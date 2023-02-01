@@ -24,27 +24,35 @@ export const serverSave = async (SERVER_URL, kanjiList) => {
     console.log('Server save error: cannot get server kanji list!');
     return;
   }
-  const serverKanjiList =  sortKanjiList(await getResponse.json());
-  kanjiList.forEach((kanji) => {
-    if (!serverKanjiList.some((serverKanji) => {
-      if (serverKanji.id === kanji.id) {
-        if (JSON.stringify(serverKanji) !== JSON.stringify(kanji)) {
-          serverUpdate(SERVER_URL, kanji, kanji.id); 
+  try {
+    const serverKanjiList =  sortKanjiList(await getResponse.json());
+    kanjiList = sortKanjiList(kanjiList);
+    kanjiList.forEach((kanji) => {
+      if (!serverKanjiList.some((serverKanji) => {
+        if (serverKanji.id === kanji.id) {
+          if (JSON.stringify(serverKanji) !== JSON.stringify(kanji)) {
+            serverUpdate(SERVER_URL, kanji, kanji.id);
+          }
+          return true;
         }
-        return true;
+        return false;
+      })) {
+        serverPost(SERVER_URL, kanji);
       }
-      return false;
-    })) {
-      serverPost(SERVER_URL, kanji);
-    }
-  });
-  serverKanjiList.forEach((serverKanji) => {
-    if (serverKanji.id >= kanjiList.length) {
-      serverDelete(SERVER_URL, serverKanji.id);
-    }
-  });
+      
+      
+    });
+    serverKanjiList.forEach((serverKanji) => {
+      if(!kanjiList.some((kanji) => kanji.id === serverKanji.id))
+      {
+        serverDelete(SERVER_URL, serverKanji.id);
+      }
+    });
+  } catch(err) {
+    console.log(`Server save error: ${err.message}`);
+  }
 
-  // Remake this function!
+  // Remake this function! JSON server breaks of this much requests
 }
 
 export const serverUpdate = async (SERVER_URL, kanjiProps, id) => {

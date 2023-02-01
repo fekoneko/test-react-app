@@ -11,7 +11,7 @@ const AddKanjiForm = ({ SERVER_URL, kanjiList, setKanjiList, autoSaveMode}) => {
   const [kunReadings, setKunReadings] = React.useState([]);
 
   const addKanji = () => {
-    const id = kanjiList.length ? kanjiList[kanjiList.length - 1].id + 1 : 0;
+    const id = kanjiList.length ? kanjiList[kanjiList.length - 1].id + 1 : 1;
     const newKanji = { id, checked: false, writing, onReadings, kunReadings, meaning };
     setKanjiList([...kanjiList, newKanji]);
     if (autoSaveMode === 'server') serverPost(SERVER_URL, newKanji);

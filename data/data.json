@@ -1,17 +1,36 @@
 {
   "saved-kanji-list": [
     {
-      "id": 3,
+      "id": 2,
       "checked": false,
-      "writing": "人",
-      "onReadings": [
-        "ニン",
-        "ジン"
-      ],
-      "kunReadings": [
-        "ひと"
-      ],
-      "meaning": "human"
+      "writing": "2",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "2"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "writing": "4",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "4"
+    },
+    {
+      "id": 6,
+      "checked": false,
+      "writing": "6",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "6"
+    },
+    {
+      "id": 8,
+      "checked": false,
+      "writing": "8",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "8"
     },
     {
       "id": 1,
@@ -19,7 +38,127 @@
       "writing": "1",
       "onReadings": [],
       "kunReadings": [],
-      "meaning": "2"
+      "meaning": "1"
+    },
+    {
+      "id": 3,
+      "checked": false,
+      "writing": "3",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "3"
+    },
+    {
+      "id": 5,
+      "checked": false,
+      "writing": "5",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "5"
+    },
+    {
+      "id": 7,
+      "checked": false,
+      "writing": "7",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "7"
+    },
+    {
+      "id": 11,
+      "checked": false,
+      "writing": "11",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "11"
+    },
+    {
+      "id": 9,
+      "checked": false,
+      "writing": "9",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "9"
+    },
+    {
+      "id": 16,
+      "checked": false,
+      "writing": "16",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "16"
+    },
+    {
+      "id": 18,
+      "checked": false,
+      "writing": "18",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "18"
+    },
+    {
+      "id": 19,
+      "checked": false,
+      "writing": "19",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "19"
+    },
+    {
+      "id": 10,
+      "checked": false,
+      "writing": "10",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "10"
+    },
+    {
+      "id": 20,
+      "checked": false,
+      "writing": "20",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "20"
+    },
+    {
+      "id": 12,
+      "checked": false,
+      "writing": "12",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "12"
+    },
+    {
+      "id": 13,
+      "checked": false,
+      "writing": "13",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "13"
+    },
+    {
+      "id": 14,
+      "checked": false,
+      "writing": "14",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "14"
+    },
+    {
+      "id": 15,
+      "checked": false,
+      "writing": "15",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "15"
+    },
+    {
+      "id": 17,
+      "checked": false,
+      "writing": "17",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "17"
     }
   ]
 }
