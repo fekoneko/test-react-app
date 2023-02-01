@@ -5,10 +5,12 @@ import Footer from './Footer';
 
 function App() {
 
+  const SERVER_URL = 'http://localhost:3500'
+
   return (
     <div className='App'>
       <Header />
-      <Content />
+      <Content SERVER_URL={ SERVER_URL } />
       <Footer />
     </div>
   );

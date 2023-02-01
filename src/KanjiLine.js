@@ -1,19 +1,26 @@
 import { BsXLg } from 'react-icons/bs';
+import { serverUpdate, serverDelete } from './storageFunctions'
 
-const KanjiLine = ({ kanji, kanjiList, setKanjiList }) => {
+const KanjiLine = ({ SERVER_URL, kanji, kanjiList, setKanjiList, autoSaveMode }) => {
 
   const handleKanjiCheck = (id) => {
-    const newKanjiList = kanjiList.map((kanji) => (
-      (kanji.id === id) ?
-      {...kanji, checked: !kanji.checked} :
-      kanji
-    ));
+    const newKanjiList = kanjiList.map((kanji) => {
+      if (kanji.id === id) {
+        const newKanji = {...kanji, checked: !kanji.checked};
+        if (autoSaveMode === 'server') serverUpdate(SERVER_URL, { checked: newKanji.checked }, id);
+        return newKanji;
+      }
+      else {
+        return kanji;
+      }
+  });
     setKanjiList(newKanjiList);
   }
 
   const handleDelete = (id) => {
     const newKanjiList = kanjiList.filter((kanji) => (kanji.id !== id));
     setKanjiList(newKanjiList);
+    if (autoSaveMode === 'server') serverDelete(SERVER_URL, id);
   }
 
   return (

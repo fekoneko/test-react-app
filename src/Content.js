@@ -2,75 +2,62 @@ import React from 'react';
 import KanjiList from './KanjiList';
 import KanjiListControls from './KanjiListControls';
 import SearchForm from './SearchForm';
+import { localSave, serverSave } from './storageFunctions'
 
-const Content = () => {
+const Content = ({ SERVER_URL }) => {
 
-  const [kanjiList, setKanjiList] = React.useState([
-    {
-      id: 0,
-      checked: false,
-      writing: '人',
-      onReadings: [ 'ニン', 'ジン' ],
-      kunReadings: [ 'ひと'],
-      meaning: 'human',
-    },
-    {
-      id: 1,
-      checked: false,
-      writing: '人',
-      onReadings: [ 'ニン', 'ジン' ],
-      kunReadings: [ 'ひと'],
-      meaning: 'human',
-    },
-    {
-      id: 2,
-      checked: false,
-      writing: '人',
-      onReadings: [ 'ニン', 'ジン' ],
-      kunReadings: [ 'ひと'],
-      meaning: 'human',
-    },
-  ]);
+  const [kanjiList, setKanjiList] = React.useState([]);
   const [displayedKanjiList, setDisplayedKanjiList] = React.useState(kanjiList);
   const [searchRequest, setSearchRequest] = React.useState('');
+  const [autoSaveMode, setAutoSaveMode] = React.useState('off');
 
-  const updateSearchResults = (newKanjiList, newSearchRequest) => {
-    if (newSearchRequest === '') {
-      setDisplayedKanjiList(newKanjiList);
-      return;
+  React.useEffect(() => {
+    if (autoSaveMode === 'local') localSave(kanjiList);
+    else if (autoSaveMode === 'server-update-all') serverSave(SERVER_URL, kanjiList);
+  }, [autoSaveMode, kanjiList, SERVER_URL]);
+
+  React.useEffect(() => {
+
+    const updateSearchResults = () => {
+      if (searchRequest === '') {
+        setDisplayedKanjiList(kanjiList);
+        return;
+      };
+      const resultList = kanjiList.filter((kanji) => (
+        searchRequest.replaceAll(', ', '　').replaceAll(',', '　').replaceAll(' ',
+          '　').replaceAll('、').split('　').map((requestPart) => (
+          
+          requestPart && (kanji.id === +requestPart || kanji.writing === requestPart ||
+          kanji.meaning.toLowerCase().includes(requestPart.toLowerCase()) ||
+            kanji.onReadings.some((reading) => reading === requestPart) ||
+            kanji.kunReadings.some((reading) => reading === requestPart))
+        )).some((meetRequestParts) => meetRequestParts)
+      ));
+      setDisplayedKanjiList(resultList);
     }
-    const resultList = newKanjiList.filter((kanji) => (
-      kanji.id === +newSearchRequest || kanji.writing === newSearchRequest || kanji.meaning === newSearchRequest ||
-        kanji.onReadings.some((reading) => reading === newSearchRequest) ||
-        kanji.kunReadings.some((reading) => reading === newSearchRequest)
-    ));
-    setDisplayedKanjiList(resultList);
-  }
 
-  const setKanjiListAndUpdate = (newKanjiList) => {
-    setKanjiList(newKanjiList);
-    updateSearchResults(newKanjiList, searchRequest);
-  }
-
-  const setSearchRequestAndUpdate = (newSearchRequest) => {
-    setSearchRequest(newSearchRequest);
-    updateSearchResults(kanjiList, newSearchRequest);
-  }
+    updateSearchResults();
+  }, [kanjiList, searchRequest]);
 
   return (
     <main>
       <SearchForm
         searchRequest={ searchRequest }
-        setSearchRequest={ setSearchRequestAndUpdate }
+        setSearchRequest={ setSearchRequest }
       />
       <KanjiList
+        SERVER_URL={ SERVER_URL }
         kanjiList={ kanjiList }
-        setKanjiList={ setKanjiListAndUpdate }
+        setKanjiList={ setKanjiList }
         displayedKanjiList={ displayedKanjiList }
+        autoSaveMode={ autoSaveMode }
       />
       <KanjiListControls
+        SERVER_URL={ SERVER_URL }
         kanjiList={ kanjiList }
-        setKanjiList={ setKanjiListAndUpdate }
+        setKanjiList={ setKanjiList }
+        autoSaveMode={ autoSaveMode }
+        setAutoSaveMode={ setAutoSaveMode }
       />
     </main>
   );

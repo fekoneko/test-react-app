@@ -16,6 +16,9 @@ const FormFieldArray = ({ fieldId, fieldLabel, fieldPlaceholderPrefix, array, se
           array.map((item, i) => {
             return  (
               <li key={ i }>
+                <label htmlFor={ fieldId + '-' + i } className='hidden-label'>
+                  fieldPlaceholderPrefix + (i+1)
+                </label>
                 <input
                   autoFocus
                   id={ fieldId + '-' + i }
@@ -60,6 +63,12 @@ const FormFieldArray = ({ fieldId, fieldLabel, fieldPlaceholderPrefix, array, se
       </div>
     </fieldset>
   );
+}
+
+FormFieldArray.defaultProps = {
+  fieldLabel: '',
+  fieldPlaceholder: '',
+  text: '',
 }
 
 export default FormFieldArray;

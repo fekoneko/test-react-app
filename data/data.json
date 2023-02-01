@@ -1,0 +1,25 @@
+{
+  "saved-kanji-list": [
+    {
+      "id": 3,
+      "checked": false,
+      "writing": "人",
+      "onReadings": [
+        "ニン",
+        "ジン"
+      ],
+      "kunReadings": [
+        "ひと"
+      ],
+      "meaning": "human"
+    },
+    {
+      "id": 1,
+      "checked": false,
+      "writing": "1",
+      "onReadings": [],
+      "kunReadings": [],
+      "meaning": "2"
+    }
+  ]
+}

@@ -1,14 +1,19 @@
+import React from 'react';
 import { BsXLg } from 'react-icons/bs';
 
 const SearchForm = ({ searchRequest, setSearchRequest }) => {
+
+  const defaultFocusRef = React.useRef();
 
   return (
     <form
       className='search-form'
       onSubmit={ (e) => e.preventDefault() }
     >
+      <label htmlFor='search-field' className='hidden-label'>Search:</label>
       <input
         id='search-field'
+        ref={ defaultFocusRef }
         type='text'
         role='searchbox'
         value={ searchRequest }
@@ -17,7 +22,11 @@ const SearchForm = ({ searchRequest, setSearchRequest }) => {
       />
       <button
         className='control-button'
-        onClick={ () => setSearchRequest('') }
+        type='button'
+        onClick={ () => {
+          setSearchRequest('');
+          defaultFocusRef.current.focus();
+        } }
       >
         <BsXLg />
       </button>

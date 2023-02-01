@@ -1,8 +1,9 @@
 import React from 'react'
 import FormFieldArray from './FormFieldArray';
 import FormFieldText from './FormFieldText';
+import { serverPost } from './storageFunctions'
 
-const AddKanjiForm = ({ kanjiList, setKanjiList}) => {
+const AddKanjiForm = ({ SERVER_URL, kanjiList, setKanjiList, autoSaveMode}) => {
 
   const [writing, setWriting] = React.useState('');
   const [meaning, setMeaning] = React.useState('');
@@ -13,6 +14,7 @@ const AddKanjiForm = ({ kanjiList, setKanjiList}) => {
     const id = kanjiList.length ? kanjiList[kanjiList.length - 1].id + 1 : 0;
     const newKanji = { id, checked: false, writing, onReadings, kunReadings, meaning };
     setKanjiList([...kanjiList, newKanji]);
+    if (autoSaveMode === 'server') serverPost(SERVER_URL, newKanji);
   }
 
   const handleSubmit = (e) => {

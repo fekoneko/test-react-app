@@ -1,3 +1,5 @@
+import React from "react";
+
 const FormFieldText = ({ fieldId, fieldLabel, fieldPlaceholder, text, setText }) => {
   return (
     <fieldset>
@@ -13,6 +15,12 @@ const FormFieldText = ({ fieldId, fieldLabel, fieldPlaceholder, text, setText })
       />
     </fieldset>
   );
+}
+
+FormFieldText.defaultProps = {
+  fieldLabel: '',
+  fieldPlaceholder: '',
+  text: '',
 }
 
 export default FormFieldText;
